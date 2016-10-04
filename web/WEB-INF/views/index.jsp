@@ -52,39 +52,7 @@
                     <p class="lead">Movie description or something</p>
                     <table id="example" class="table table-bordered table-hover table-striped ">
                         <tbody id="movies">
-                        <tr>
-                            <td>Some nice title</td>
-                            <td>Short description</td>
-                            <td>Price</td>
-                            <td>
-                                <button class="btn  btn-info" type="button">Details</button>
-                            <td>
-                                <button class="btn btn-success" type="button">Add to card</button>
-                                <span class="glyphicon glyphicon-shopping-cart"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Some nice title</td>
-                            <td>Short description</td>
-                            <td>Price</td>
-                            <td>
-                                <button class="btn  btn-info" type="button">Details</button>
-                            <td>
-                                <button class="btn btn-success" type="button">Add to card</button>
-                                <span class="glyphicon glyphicon-shopping-cart"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Some nice title</td>
-                            <td>Short description</td>
-                            <td>Price</td>
-                            <td>
-                                <button class="btn  btn-info" type="button">Details</button>
-                            <td>
-                                <button class="btn btn-success" type="button">Add to card</button>
-                                <span class="glyphicon glyphicon-shopping-cart"></span>
-                            </td>
-                        </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -131,6 +99,7 @@ DataTables designed and created by SpryMedia Ltd © 2007-2016. MIT licensed. Our
 
         getFilmsByCategoryId(1);
 
+
     });
 </script>
 <script type="text/javascript">
@@ -145,18 +114,20 @@ DataTables designed and created by SpryMedia Ltd © 2007-2016. MIT licensed. Our
 <script type="text/javascript">
     function getFilmsByCategoryId(id) {
         $('#movies').empty();
+        $('.movies-container').remove();
         $.get("/category/"+id, function (data) {
             $.each(data, function (index, val) {
-                $('#movies').append("<tr><td>"+val.title+" </td> " +
-                        "<td>"+val.description+"</td>" +
-                        " <td>Price</td> " +
-                        "<td> <button class='btn  btn-info type=button'>Details</button></td> " +
-                        "<td> <button class='btn btn-success type=button'>Add to card</button> <span class='glyphicon glyphicon-shopping-cart'></span> </td></tr>");
+                $('#movies').append("<tr><td class='col-md-2'>"+val.title+" </td> " +
+                        "<td class='col-md-5'><i>"+val.description+"</i></td>" +
+                        " <td class='col-md-1'>"+val.replacementCost+" $ </td> " +
+                        "<td class='col-md-1'> <button class='btn  btn-info type=button'>Details</button></td> " +
+                        "<td class='col-md-3'> <button class='btn btn-success type=button'>Add to card</button> <span class='glyphicon glyphicon-shopping-cart'></span> </td></tr>");
             });
             $('#movies').paginathing({
                 perPage : 4,
                 limitPagination: 4,
-                insertAfter: '.table'
+                insertAfter: '.table',
+                containerClass: 'movies-container'
             });
         });
     }

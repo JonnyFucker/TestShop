@@ -96,6 +96,9 @@ footer {
 #addressPanel{
     border: none;
 }
+#movies{
+    font-size: 12px;
+}
 @media(max-width:768px) {
     section {
         padding-top: 25px;
