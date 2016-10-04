@@ -3,135 +3,170 @@
            uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <title>Dvd store</title>
+    <title>Dvd store</title>
 
-        <!-- Bootstrap Core CSS -->
-        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Custom CSS -->
-        <link href="../../css/full-width-pics.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../../css/full-width-pics.css" rel="stylesheet">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <div id="nav">
-            
+<div id="nav">
+
+</div>
+<!-- Image backgrounds are set within the full-width-pics.css file. -->
+<header class="image-bg-fluid-height">
+</header>
+
+<!-- Content Section -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-lg-4">
+                <p class="lead">Dvd online shop categories</p>
+                <div class="list-group" id="categories">
+
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-9">
+                <div class="table-responsive">
+                    <p class="lead">Movie description or something</p>
+                    <table class="table table-bordered table-hover table-striped ">
+                        <tbody id="movies">
+                        <tr>
+                            <td>Some nice title</td>
+                            <td>Short description</td>
+                            <td>Price</td>
+                            <td>
+                                <button class="btn  btn-info" type="button">Details</button>
+                            <td>
+                                <button class="btn btn-success" type="button">Add to card</button>
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Some nice title</td>
+                            <td>Short description</td>
+                            <td>Price</td>
+                            <td>
+                                <button class="btn  btn-info" type="button">Details</button>
+                            <td>
+                                <button class="btn btn-success" type="button">Add to card</button>
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Some nice title</td>
+                            <td>Short description</td>
+                            <td>Price</td>
+                            <td>
+                                <button class="btn  btn-info" type="button">Details</button>
+                            <td>
+                                <button class="btn btn-success" type="button">Add to card</button>
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <!-- Image backgrounds are set within the full-width-pics.css file. -->
-        <header class="image-bg-fluid-height">
-        </header>
+    </div>
+</section>
 
-        <!-- Content Section -->
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-lg-4">
-                        <p class="lead">Dvd online shop categories</p>
-                        <div class="list-group" id="categories">
-                            <a href="#" class="list-group-item">Category 1</a>
-                            <a href="#" class="list-group-item">Category 2</a>
-                            <a href="#" class="list-group-item">Category 3</a>
-                            <a href="#" class="list-group-item">Category 4</a>
-                            <a href="#" class="list-group-item">Category 5</a>  
-                        </div>
-                    </div>
-                    <div class="col-lg-8 col-md-9">
-                        <div class="table-responsive" >       
-                            <p class="lead">Movie description or something</p>
-                            <table class="table table-bordered table-hover table-striped ">
-                                <tbody  id="movies">
-                                    <tr>
-                                        <td>Some nice title</td>
-                                        <td>Short description</td>
-                                        <td>Price </td>
-                                        <td><button class="btn  btn-info" type="button">Details</button>
-                                        <td><button class="btn btn-success" type="button">Add to card </button> <span class="glyphicon glyphicon-shopping-cart"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Some nice title</td>
-                                        <td>Short description</td>
-                                        <td>Price </td>
-                                        <td><button class="btn  btn-info" type="button">Details</button>
-                                        <td><button class="btn btn-success" type="button">Add to card </button> <span class="glyphicon glyphicon-shopping-cart"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Some nice title</td>
-                                        <td>Short description</td>
-                                        <td>Price </td>
-                                        <td><button class="btn  btn-info" type="button">Details</button>
-                                        <td><button class="btn btn-success" type="button">Add to card </button> <span class="glyphicon glyphicon-shopping-cart"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+<!-- Fixed Height Image Aside -->
+<!-- Image backgrounds are set within the full-width-pics.css file. -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Your Website 2014</p>
             </div>
-        </section>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</footer>
 
-        <!-- Fixed Height Image Aside -->
-        <!-- Image backgrounds are set within the full-width-pics.css file. -->
-        <!-- Footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Copyright &copy; Your Website 2014</p>
-                    </div>
-                </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.container -->
-        </footer>
+<!-- jQuery -->
+<script src="../../js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/paginathing.js"></script>
 
-        <!-- jQuery -->
-        <script src="../../js/jquery.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="../../js/bootstrap.min.js"></script>
-        <script src="../../js/paginathing.js"></script>
-        <script type="text/javascript">
-            jQuery(document).ready(function ($) {
-                for (var i = 1; i <= 150; i++) {
-                    $('#categories').append("<a class='list-group-item'>MY NEW ITEM " + i + "</a>");
-                }
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
 
-                $('#categories').paginathing({
-                    perPage: 4,
-                    limitPagination: 4,
-                    containerClass: 'panel-footer'
-                });
+        $.get("/category", function (data) {
+            $.each(data, function (index, val) {
+                $('#categories').append("<a class='list-group-item'>" + val.name + "</a>");
             });
-        </script>
-        <script type="text/javascript">
-            $('#movies').paginathing({
-                perPage: 4,
-                insertAfter: '.table'
+        });
 
+        $('#categories').paginathing({
+            perPage: 4,
+            limitPagination: 4,
+            containerClass: 'panel-footer'
+        });
+
+        getFilmsByCategoryId(1);
+
+    });
+</script>
+<script type="text/javascript">
+    $('#categories').on('click','a',function () {
+        var index = $(this).index()+1;
+        getFilmsByCategoryId(index);
+
+    })
+</script>
+
+<script type="text/javascript">
+    function getFilmsByCategoryId(id) {
+        $('#movies').empty();
+        $.get("/category/"+id, function (data) {
+            $.each(data, function (index, val) {
+                $('#movies').append("<tr><td>"+val.title+" </td> " +
+                        "<td>"+val.description+"</td>" +
+                        " <td>Price</td> " +
+                        "<td> <button class='btn  btn-info type=button'>Details</button></td> " +
+                        "<td> <button class='btn btn-success type=button'>Add to card</button> <span class='glyphicon glyphicon-shopping-cart'></span> </td></tr>");
             });
-        </script>
+        });
+    }
+</script>
 
-        <script src="../../script/navbar.js" type="text/javascript">
-        </script>
-        
-    </body>
+<script type="text/javascript">
+    $('#movies').paginathing({
+        perPage: 4,
+        insertAfter: '.table'
+
+    });
+</script>
+
+<script src="../../script/navbar.js" type="text/javascript">
+</script>
+
+</body>
 
 </html>

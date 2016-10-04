@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="shop.entities.FilmEntity" table="film" schema="sakila">
+        <id name="filmId" column="film_id"/>
+        <property name="title" column="title"/>
+        <property name="description" column="description"/>
+        <property name="rentalDuration" column="rental_duration"/>
+        <property name="rentalRate" column="rental_rate"/>
+        <property name="length" column="length"/>
+        <property name="replacementCost" column="replacement_cost"/>
+        <property name="lastUpdate" column="last_update"/>
+    </class>
+</hibernate-mapping>

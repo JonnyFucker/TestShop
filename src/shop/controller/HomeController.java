@@ -45,11 +45,11 @@ public class HomeController {
         return "confirmation";
     }
 
-    @RequestMapping(value = "/base")
+/*    @RequestMapping(value = "/base")
     public String database() {
         System.out.println("SIZE : " + categoryDAO.getCategoryEntities().size());
 
         return "testDataBase";
-    }
+    }*/
 
 }

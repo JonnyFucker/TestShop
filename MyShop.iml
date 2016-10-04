@@ -17,10 +17,13 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="hibernate.cfg.xml" />
-          <unit-entry name="sessionFactory" value="source" />
+          <unit-entry name="hibernate.cfg.xml" value="8b60125b-7249-4ab3-8577-dda4d07dcaed" />
+          <unit-entry name="sessionFactory" value="2ca8fc73-dda9-401d-9860-4278e230b947" />
         </datasource-map>
-        <naming-strategy-map />
+        <naming-strategy-map>
+          <unit-entry name="hibernate.cfg.xml" />
+          <unit-entry name="sessionFactory" />
+        </naming-strategy-map>
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/hibernate.cfg.xml" />
       </configuration>
     </facet>
@@ -65,5 +68,6 @@
     <orderEntry type="library" name="Spring MVC-4.2.8.RELEASE" level="project" />
     <orderEntry type="library" name="jstl:jstl:1.2" level="project" />
     <orderEntry type="library" name="org.apache.commons:commons-dbcp2:2.0" level="project" />
+    <orderEntry type="library" name="com.fasterxml.jackson.core:jackson-databind:2.5.0" level="project" />
   </component>
 </module>

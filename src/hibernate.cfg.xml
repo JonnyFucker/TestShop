@@ -8,12 +8,18 @@
             org.hibernate.dialect.MySQLDialect
         </property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <!-- Assume test is the database name -->
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sakila</property>
         <property name="connection.username">root</property>
         <property name="connection.password">tomek</property>
+        <!-- Assume test is the database name -->
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sakila</property>
+
+
         <mapping resource="shop/entities/CategoryEntity.hbm.xml"/>
         <mapping class="shop.entities.CategoryEntity"/>
+        <mapping class="shop.entities.FilmEntity"/>
+        <mapping resource="shop/entities/FilmEntity.hbm.xml"/>
+        <mapping class="shop.entities.FilmCategoryEntity"/>
+        <mapping resource="shop/entities/FilmCategoryEntity.hbm.xml"/>
 
 
         <!-- DB schema will be updated if needed -->
