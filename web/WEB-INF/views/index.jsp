@@ -50,7 +50,7 @@
             <div class="col-lg-8 col-md-9">
                 <div class="table-responsive">
                     <p class="lead">Movie description or something</p>
-                    <table class="table table-bordered table-hover table-striped ">
+                    <table id="example" class="table table-bordered table-hover table-striped ">
                         <tbody id="movies">
                         <tr>
                             <td>Some nice title</td>
@@ -114,19 +114,19 @@
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/paginathing.js"></script>
 
+DataTables designed and created by SpryMedia Ltd © 2007-2016. MIT licensed. Our Supporters
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
 
         $.get("/category", function (data) {
             $.each(data, function (index, val) {
                 $('#categories').append("<a class='list-group-item'>" + val.name + "</a>");
-            });
-        });
 
-        $('#categories').paginathing({
-            perPage: 4,
-            limitPagination: 4,
-            containerClass: 'panel-footer'
+            });
+            $('#categories').paginathing({
+                perPage: 4,
+                limitPagination: 4
+            });
         });
 
         getFilmsByCategoryId(1);
@@ -137,6 +137,7 @@
     $('#categories').on('click','a',function () {
         var index = $(this).index()+1;
         getFilmsByCategoryId(index);
+
 
     })
 </script>
@@ -152,16 +153,13 @@
                         "<td> <button class='btn  btn-info type=button'>Details</button></td> " +
                         "<td> <button class='btn btn-success type=button'>Add to card</button> <span class='glyphicon glyphicon-shopping-cart'></span> </td></tr>");
             });
+            $('#movies').paginathing({
+                perPage : 4,
+                limitPagination: 4,
+                insertAfter: '.table'
+            });
         });
     }
-</script>
-
-<script type="text/javascript">
-    $('#movies').paginathing({
-        perPage: 4,
-        insertAfter: '.table'
-
-    });
 </script>
 
 <script src="../../script/navbar.js" type="text/javascript">
