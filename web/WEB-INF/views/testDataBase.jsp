@@ -13,29 +13,23 @@
     <title>Title</title>
 </head>
 <body>
-<sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-                   url="jdbc:mysql://localhost:3306/sakila"
-                   user="root"  password="tomek"/>
-<sql:query var="result" dataSource="${snapshot}">
-    SELECT * FROM category;
 
-</sql:query>
 
 <table border="1">
     <!-- column headers -->
     <tr>
-        <c:forEach var="columnName" items="${result.columnNames}">
-            <th><c:out value="${columnName}"/></th>
+        <c:forEach var="columnName" items="${cate}">
+            <th><c:out value="${columnName.name}"/></th>
         </c:forEach>
     </tr>
     <!-- column data -->
-    <c:forEach var="row" items="${result.rowsByIndex}">
+<%--    <c:forEach var="row" items="${result.rowsByIndex}">
         <tr>
             <c:forEach var="column" items="${row}">
                 <td><c:out value="${column}"/></td>
             </c:forEach>
         </tr>
-    </c:forEach>
+    </c:forEach>--%>
 </table>
 </body>
 </html>

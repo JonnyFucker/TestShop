@@ -86,25 +86,24 @@ DataTables designed and created by SpryMedia Ltd © 2007-2016. MIT licensed. Our
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
 
-        $.get("/category", function (data) {
-            $.each(data, function (index, val) {
-                $('#categories').append("<a class='list-group-item'>" + val.name + "</a>");
 
-            });
-            $('#categories').paginathing({
-                perPage: 4,
-                limitPagination: 4
-            });
+        <c:forEach var="columnName" items="${cate}">
+            $('#categories').append("<a class='list-group-item'> <c:out value="${columnName.name}"/> </a>");
+
+        </c:forEach>
+
+        $('#categories').paginathing({
+            perPage: 4,
+            limitPagination: 4
         });
-
         getFilmsByCategoryId(1);
 
 
     });
 </script>
 <script type="text/javascript">
-    $('#categories').on('click','a',function () {
-        var index = $(this).index()+1;
+    $('#categories').on('click', 'a', function () {
+        var index = $(this).index() + 1;
         getFilmsByCategoryId(index);
 
 
@@ -115,16 +114,16 @@ DataTables designed and created by SpryMedia Ltd © 2007-2016. MIT licensed. Our
     function getFilmsByCategoryId(id) {
         $('#movies').empty();
         $('.movies-container').remove();
-        $.get("/category/"+id, function (data) {
+        $.get("/category/" + id, function (data) {
             $.each(data, function (index, val) {
-                $('#movies').append("<tr><td class='col-md-2'>"+val.title+" </td> " +
-                        "<td class='col-md-5'><i>"+val.description+"</i></td>" +
-                        " <td class='col-md-1'>"+val.replacementCost+" $ </td> " +
+                $('#movies').append("<tr><td class='col-md-2'>" + val.title + " </td> " +
+                        "<td class='col-md-5'><i>" + val.description + "</i></td>" +
+                        " <td class='col-md-1'>" + val.replacementCost + " $ </td> " +
                         "<td class='col-md-1'> <button class='btn  btn-info type=button'>Details</button></td> " +
                         "<td class='col-md-3'> <button class='btn btn-success type=button'>Add to card</button> <span class='glyphicon glyphicon-shopping-cart'></span> </td></tr>");
             });
             $('#movies').paginathing({
-                perPage : 4,
+                perPage: 4,
                 limitPagination: 4,
                 insertAfter: '.table',
                 containerClass: 'movies-container'

@@ -3,13 +3,30 @@ package shop.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.ServletContextAware;
 import shop.dao.CategoryDAO;
+
+import javax.annotation.PostConstruct;
+import javax.servlet.ServletContext;
 
 /**
  * Created by Tomek on 2016-10-02.
  */
 @Controller
-public class HomeController {
+public class HomeController implements ServletContextAware {
+
+    private ServletContext servletContext;
+
+    @PostConstruct
+    public void init() {
+        servletContext.setAttribute("cate", categoryDAO.getCategoryEntities());
+
+    }
+
+    @Override
+    public void setServletContext(ServletContext servletContext) {
+        this.servletContext = servletContext;
+    }
 
     @Autowired
     private CategoryDAO categoryDAO;
@@ -45,11 +62,10 @@ public class HomeController {
         return "confirmation";
     }
 
-/*    @RequestMapping(value = "/base")
+    @RequestMapping(value = "/base")
     public String database() {
-        System.out.println("SIZE : " + categoryDAO.getCategoryEntities().size());
 
         return "testDataBase";
-    }*/
+    }
 
 }
