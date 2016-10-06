@@ -83,5 +83,14 @@ public class ShoppingCart {
                 .orElse(null);
     }
 
+    public synchronized void clear(){
+        shoppingCartItems.clear();
+        numberOfItems = 0;
+        total = 0;
+    }
+    public synchronized void remove(FilmEntity filmEntity){
+        ShoppingCartItem shoppingCartItem = getShoppingCartItem(filmEntity);
+        shoppingCartItems.remove(shoppingCartItem);
+    }
 
 }

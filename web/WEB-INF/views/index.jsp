@@ -87,7 +87,7 @@
 
 
         <c:forEach var="columnName" items="${cate}">
-            $('#categories').append("<a class='list-group-item'> <c:out value="${columnName.name}"/> </a>");
+        $('#categories').append("<a class='list-group-item'> <c:out value="${columnName.name}"/> </a>");
 
         </c:forEach>
 
@@ -119,7 +119,7 @@
                         "<td class='col-md-5'><i>" + val.description + "</i></td>" +
                         " <td class='col-md-1'>" + val.replacementCost + " $ </td> " +
                         "<td class='col-md-1'> <button class='btn  btn-info type=button'>Details</button></td> " +
-                        "<td class='col-md-3'> <button onclick='addToCart("+val.filmId+")' id=cartButton"+index+" class='btn btn-success type=button'>Add to card</button> <span class='glyphicon glyphicon-shopping-cart'></span> </td></tr>");
+                        "<td class='col-md-3'> <button onclick='addToCart(" + val.filmId + ")' id=cartButton" + index + " class='btn btn-success type=button'>Add to card</button> <span class='glyphicon glyphicon-shopping-cart'></span> </td></tr>");
             });
             $('#movies').paginathing({
                 perPage: 4,
@@ -132,15 +132,15 @@
 </script>
 
 <script type="text/javascript">
-   function addToCart(filmId) {
+    function addToCart(filmId) {
 
-       $.ajax({
-           type: "POST",
-           data: {"filmId" : filmId},
-           dataType: "json",
-           url: "/addToCart"
-       });
-   }
+        $.ajax({
+            type: "POST",
+            data: {"filmId": filmId},
+            dataType: "json",
+            url: "/addToCart"
+        });
+    }
 </script>
 
 <script src="../../script/navbar.js" type="text/javascript">

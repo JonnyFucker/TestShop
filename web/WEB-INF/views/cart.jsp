@@ -83,24 +83,22 @@ and open the template in the editor.
             dataType: "json",
             url: "/updateQuantityInCart",
             success: function (shoppingCartItem) {
-                console.log(shoppingCartItem);
                 removeAndAddTotalPrice(shoppingCartItem)
 
             }
         });
-    }
-    ;
+    };
 
     function showShoppingCart() {
         $('#cartTableBody').empty();
         $.get("/shoppingCart", function (shoppingCart) {
-            $.each(shoppingCart.shoppingCartItems, function (index, shoppingCartItems) {
+            $.each(shoppingCart.shoppingCartItems, function (index, shoppingCartItem) {
 
-                $('#cartTableBody').append("<tr> <td class='col-lg-2'>" + shoppingCartItems.product.title + "</td> " +
-                        "<td class='col-lg-1'><input min='1' max='10' oninput='incrementQuantity(" + shoppingCartItems.product.filmId + ",$(this).val())' type='number' class='form-control' id='exampleInputNumber' value='" + shoppingCartItems.quantity + "'> </td>" +
-                        "<td class='col-lg-1 text-center'><strong>" + shoppingCartItems.product.replacementCost + " $</strong></td>" +
-                        "<td id=totalPrice"+shoppingCartItems.product.filmId+" class='col-lg-2 text-center'><strong>" + shoppingCartItems.totalPrice + " $</strong></td>" +
-                        " <td class='col-lg-2'><button type='button' class='btn btn-danger'>" +
+                $('#cartTableBody').append("<tr> <td class='col-lg-2'>" + shoppingCartItem.product.title + "</td> " +
+                        "<td class='col-lg-1'><input min='1' max='10' oninput='incrementQuantity(" + shoppingCartItem.product.filmId + ",$(this).val())' type='number' class='form-control' id='exampleInputNumber' value='" + shoppingCartItem.quantity + "'> </td>" +
+                        "<td class='col-lg-1 text-center'><strong>" + shoppingCartItem.product.replacementCost + " $</strong></td>" +
+                        "<td id=totalPrice" + shoppingCartItem.product.filmId + " class='col-lg-2 text-center'><strong>" + shoppingCartItem.totalPrice + " $</strong></td>" +
+                        " <td class='col-lg-2'><button onclick='removeItemFromCart("+ shoppingCartItem.product.filmId+")' type='button' class='btn btn-danger'>" +
                         " <span class='glyphicon glyphicon-remove'></span> Remove" +
                         "</button> </td> </tr>")
             });
@@ -108,11 +106,18 @@ and open the template in the editor.
     }
 
     function removeAndAddTotalPrice(shoppingCartItem) {
-        console.log('#totalPrice'+shoppingCartItem.product.filmId );
-            $('#totalPrice'+shoppingCartItem.product.filmId ).replaceWith("<td id=totalPrice"+shoppingCartItem.product.filmId+" class='col-lg-2 text-center'><strong>" + shoppingCartItem.totalPrice + " $</strong></td>");
+        console.log('#totalPrice' + shoppingCartItem.product.filmId);
+        $('#totalPrice' + shoppingCartItem.product.filmId).replaceWith("<td id=totalPrice" + shoppingCartItem.product.filmId + " class='col-lg-2 text-center'><strong>" + shoppingCartItem.totalPrice + " $</strong></td>");
+    }
 
-
-
+    function removeItemFromCart(id) {
+        $.ajax({
+            type: "POST",
+            data: {"filmId" : id},
+            dataType: "json",
+            url: "/removeItem"
+        });
+        showShoppingCart();
     }
 </script>
 </body>

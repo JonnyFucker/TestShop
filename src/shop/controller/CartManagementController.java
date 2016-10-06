@@ -40,4 +40,10 @@ public class CartManagementController {
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
+
+    @RequestMapping(value = "/removeItem", method = RequestMethod.POST)
+    public void removeItemFromCart(@RequestParam("filmId") int filmId){
+        FilmEntity filmEntity = filmDAO.getFilmById(filmId);
+        shoppingCart.remove(filmEntity);
+    }
 }
