@@ -39,11 +39,8 @@ and open the template in the editor.
 
                     </tbody>
                 </table>
-                <div class="col-lg-8 col-md-offset-1">
+                <div id="subTotal" class="col-lg-8 col-md-offset-1">
 
-                            <span id="subtotal" class="col-lg-offset-8 text-center label label-info subtotal">
-                                <strong> subtotal : 9$</strong>
-                            </span>
 
                 </div>
                 <div class="col-lg-8 col-lg-offset-4 shoppingButtons">
@@ -72,39 +69,54 @@ and open the template in the editor.
 <script type="text/javascript">
     $(document).ready(function () {
         showShoppingCart();
+        updateSubTotal();
     });
 
 </script>
 <script type="text/javascript">
-    function incrementQuantity(filmId, quantity) {
+    function changeQuantity(filmId, quantity) {
         $.ajax({
             type: "POST",
             data: {"filmId": filmId, "quantity": quantity},
             dataType: "json",
             url: "/updateQuantityInCart",
             success: function (shoppingCartItem) {
-                removeAndAddTotalPrice(shoppingCartItem)
-
+                removeAndAddTotalPrice(shoppingCartItem);
+                updateSubTotal();
             }
         });
-    };
+    }
+    ;
 
+    function updateTable(shoppingCart) {
+        $.each(shoppingCart.shoppingCartItems, function (index, shoppingCartItem) {
+
+            $('#cartTableBody').append("<tr> <td class='col-lg-2'>" + shoppingCartItem.product.title + "</td> " +
+                    "<td class='col-lg-1'><input min='1' max='10' oninput='changeQuantity(" + shoppingCartItem.product.filmId + ",$(this).val())' type='number' class='form-control' id='exampleInputNumber' value='" + shoppingCartItem.quantity + "'> </td>" +
+                    "<td class='col-lg-1 text-center'><strong>" + shoppingCartItem.product.replacementCost + " $</strong></td>" +
+                    "<td id=totalPrice" + shoppingCartItem.product.filmId + " class='col-lg-2 text-center'><strong>" + shoppingCartItem.totalPrice + " $</strong></td>" +
+                    " <td class='col-lg-2'><button onclick='removeItemFromCart(" + shoppingCartItem.product.filmId + ")' type='button' class='btn btn-danger'>" +
+                    " <span class='glyphicon glyphicon-remove'></span> Remove" +
+                    "</button> </td> </tr>")
+        });
+    }
     function showShoppingCart() {
         $('#cartTableBody').empty();
         $.get("/shoppingCart", function (shoppingCart) {
-            $.each(shoppingCart.shoppingCartItems, function (index, shoppingCartItem) {
-
-                $('#cartTableBody').append("<tr> <td class='col-lg-2'>" + shoppingCartItem.product.title + "</td> " +
-                        "<td class='col-lg-1'><input min='1' max='10' oninput='incrementQuantity(" + shoppingCartItem.product.filmId + ",$(this).val())' type='number' class='form-control' id='exampleInputNumber' value='" + shoppingCartItem.quantity + "'> </td>" +
-                        "<td class='col-lg-1 text-center'><strong>" + shoppingCartItem.product.replacementCost + " $</strong></td>" +
-                        "<td id=totalPrice" + shoppingCartItem.product.filmId + " class='col-lg-2 text-center'><strong>" + shoppingCartItem.totalPrice + " $</strong></td>" +
-                        " <td class='col-lg-2'><button onclick='removeItemFromCart("+ shoppingCartItem.product.filmId+")' type='button' class='btn btn-danger'>" +
-                        " <span class='glyphicon glyphicon-remove'></span> Remove" +
-                        "</button> </td> </tr>")
-            });
+            updateTable(shoppingCart);
         });
+
     }
 
+    function updateSubTotal() {
+
+        $.get("/shoppingCart", function (shoppingCart) {
+            $('#subTotal').empty();
+            $('#subTotal').append("<span class='col-lg-offset-8 text-center label label-info subtotal'> <strong> subtotal : " + shoppingCart.subTotal + "$</strong> </span>")
+        });
+
+
+    }
     function removeAndAddTotalPrice(shoppingCartItem) {
         console.log('#totalPrice' + shoppingCartItem.product.filmId);
         $('#totalPrice' + shoppingCartItem.product.filmId).replaceWith("<td id=totalPrice" + shoppingCartItem.product.filmId + " class='col-lg-2 text-center'><strong>" + shoppingCartItem.totalPrice + " $</strong></td>");
@@ -113,11 +125,12 @@ and open the template in the editor.
     function removeItemFromCart(id) {
         $.ajax({
             type: "POST",
-            data: {"filmId" : id},
+            data: {"filmId": id},
             dataType: "json",
             url: "/removeItem"
         });
         showShoppingCart();
+        updateSubTotal();
     }
 </script>
 </body>

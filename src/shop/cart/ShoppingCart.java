@@ -61,7 +61,7 @@ public class ShoppingCart {
         for (ShoppingCartItem item : shoppingCartItems) {
             amount += item.getTotalPrice();
         }
-        return amount;
+        return new BigDecimal(amount).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
     }
     public synchronized void calculateTotal(double surcharge){
 
