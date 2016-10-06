@@ -63,12 +63,12 @@ and open the template in the editor.
                 <div id="panelInfo" class="panel panel-info">
                     <div class="panel-body">
                         <div class="col-lg-6">
-                            <p>subtotal : </p>
+                            <p >subtotal : </p>
                             <p class="thick-line"> delivery bonus : </p>
                         </div>
                         <div class="col-lg-6 ">
-                            <p class="toRight"> $5</p>
-                            <p class="toRight"> $5</p>
+                            <p id="subTotal" class="toRight"> $5</p>
+                            <p class="toRight "> $5</p>
                         </div>
                     </div>
                 </div>
@@ -119,6 +119,10 @@ and open the template in the editor.
                     required: true
                 }
             }
+        });
+        $.get("/shoppingCart", function (shoppingCart) {
+            $('#subTotal').empty();
+            $('#subTotal').append("<p id='subTotal'> <strong>" + shoppingCart.subTotal + "$</strong> </p>")
         });
     });
 </script>

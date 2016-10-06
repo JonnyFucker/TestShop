@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-            $(document).ready(function () {
-                $('#nav').load('nav');
-            });
+$(document).ready(function () {
+    $('#nav').load('nav');
+});
             

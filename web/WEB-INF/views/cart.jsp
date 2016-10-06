@@ -62,9 +62,8 @@ and open the template in the editor.
 <!-- Bootstrap Core JavaScript -->
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/paginathing.js"></script>
-<script src="../../script/navbar.js" type="text/javascript">
-</script>
-
+<script src="../../script/navbar.js" type="text/javascript"></script>
+<script src="../../script/commonScript.js" type="text/javascript"></script>
 <!-- get json with shopping cart, iterate through lis contains products, each product is FilmEntity, get proper value -->
 <script type="text/javascript">
     $(document).ready(function () {
@@ -108,15 +107,7 @@ and open the template in the editor.
 
     }
 
-    function updateSubTotal() {
 
-        $.get("/shoppingCart", function (shoppingCart) {
-            $('#subTotal').empty();
-            $('#subTotal').append("<span class='col-lg-offset-8 text-center label label-info subtotal'> <strong> subtotal : " + shoppingCart.subTotal + "$</strong> </span>")
-        });
-
-
-    }
     function removeAndAddTotalPrice(shoppingCartItem) {
         console.log('#totalPrice' + shoppingCartItem.product.filmId);
         $('#totalPrice' + shoppingCartItem.product.filmId).replaceWith("<td id=totalPrice" + shoppingCartItem.product.filmId + " class='col-lg-2 text-center'><strong>" + shoppingCartItem.totalPrice + " $</strong></td>");
