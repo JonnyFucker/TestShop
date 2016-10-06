@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface FilmDAO {
     List<FilmEntity> getFilmsByCategoryId(int id);
+    FilmEntity getFilmById(int id);
 }

@@ -77,12 +77,11 @@
 </footer>
 
 <!-- jQuery -->
-<script src="../../js/jquery.js"></script>
+<script src="../../js/jquery-3.1.1.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/paginathing.js"></script>
 
-DataTables designed and created by SpryMedia Ltd © 2007-2016. MIT licensed. Our Supporters
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
 
@@ -116,11 +115,11 @@ DataTables designed and created by SpryMedia Ltd © 2007-2016. MIT licensed. Our
         $('.movies-container').remove();
         $.get("/category/" + id, function (data) {
             $.each(data, function (index, val) {
-                $('#movies').append("<tr><td class='col-md-2'>" + val.title + " </td> " +
+                $('#movies').append("<tr> <td class='col-md-2'>" + val.title + "</td> " +
                         "<td class='col-md-5'><i>" + val.description + "</i></td>" +
                         " <td class='col-md-1'>" + val.replacementCost + " $ </td> " +
                         "<td class='col-md-1'> <button class='btn  btn-info type=button'>Details</button></td> " +
-                        "<td class='col-md-3'> <button class='btn btn-success type=button'>Add to card</button> <span class='glyphicon glyphicon-shopping-cart'></span> </td></tr>");
+                        "<td class='col-md-3'> <button onclick='addToCart("+val.filmId+")' id=cartButton"+index+" class='btn btn-success type=button'>Add to card</button> <span class='glyphicon glyphicon-shopping-cart'></span> </td></tr>");
             });
             $('#movies').paginathing({
                 perPage: 4,
@@ -130,6 +129,18 @@ DataTables designed and created by SpryMedia Ltd © 2007-2016. MIT licensed. Our
             });
         });
     }
+</script>
+
+<script type="text/javascript">
+   function addToCart(filmId) {
+
+       $.ajax({
+           type: "POST",
+           data: {"filmId" : filmId},
+           dataType: "json",
+           url: "/addToCart"
+       });
+   }
 </script>
 
 <script src="../../script/navbar.js" type="text/javascript">

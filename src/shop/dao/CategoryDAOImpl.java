@@ -36,7 +36,7 @@ public class CategoryDAOImpl implements CategoryDAO {
         try {
             //Transaction transaction = session.beginTransaction();
             session = sessionFactory.getCurrentSession();
-            Query query = session.createQuery("from CategoryEntity ");
+            Query query = session.createQuery("from CategoryEntity");
             categoryEntityList = (List<CategoryEntity>) query.list();
             //transaction.commit();
 

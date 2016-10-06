@@ -2,6 +2,8 @@ package shop.cart;
 
 import shop.entities.FilmEntity;
 
+import java.math.BigDecimal;
+
 /**
  * Created by Tomek on 2016-10-05.
  */
@@ -35,7 +37,9 @@ public class ShoppingCartItem {
     }
 
     public double getTotalPrice() {
-        return (double) this.quantity * this.product.getReplacementCost().doubleValue();
+        double totalPrice = this.quantity * this.product.getReplacementCost().setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+        totalPrice = new BigDecimal(totalPrice).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+        return  totalPrice;
     }
 
 
