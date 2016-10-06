@@ -15,7 +15,7 @@ import javax.servlet.ServletContext;
  * Created by Tomek on 2016-10-02.
  */
 @Controller
-public class HomeController implements ServletContextAware {
+public class MainController implements ServletContextAware {
 
     private ServletContext servletContext;
 

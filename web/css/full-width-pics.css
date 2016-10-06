@@ -99,6 +99,12 @@ footer {
 #movies{
     font-size: 12px;
 }
+.my-error-class {
+    color:red;
+}
+.my-valid-class {
+    color:green;
+}
 @media(max-width:768px) {
     section {
         padding-top: 25px;

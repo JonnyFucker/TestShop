@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Tomek on 2016-10-04.
  */
 @org.springframework.web.bind.annotation.RestController
-public class RestController {
+public class RestCategoryController {
 
     @Autowired
     private CategoryDAO categoryDAO;

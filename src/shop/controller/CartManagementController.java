@@ -46,4 +46,10 @@ public class CartManagementController {
         FilmEntity filmEntity = filmDAO.getFilmById(filmId);
         shoppingCart.remove(filmEntity);
     }
+
+    @RequestMapping(value = "/clearCart")
+    public String clearCart(){
+        shoppingCart.clear();
+        return "cart";
+    }
 }

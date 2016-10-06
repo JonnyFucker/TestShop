@@ -44,15 +44,15 @@ and open the template in the editor.
 
                 </div>
                 <div class="col-lg-8 col-lg-offset-4 shoppingButtons">
-                    <button type="button" class="btn btn-danger ">Clear cart
+                    <button id="clearCartButton" type="button" class="btn btn-danger ">Clear cart
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
-                    <button type="button" class="btn btn-default col-lg-offset-1">
+                    <a href="index" id="continueShoppingButton" type="button" class="btn btn-default col-lg-offset-1">
                         <span class="glyphicon glyphicon-shopping-cart"></span>Continue Shopping
-                    </button>
-                    <button type="button" class="btn btn-success col-lg-offset-1 ">Checkout
+                    </a>
+                    <a href="checkout" id="checkoutButton" type="button" class="btn btn-success col-lg-offset-1 ">Checkout
                         <span class="glyphicon glyphicon-play"></span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -132,6 +132,12 @@ and open the template in the editor.
         showShoppingCart();
         updateSubTotal();
     }
+    
+    $('#clearCartButton').click(function () {
+        $.get("/clearCart");
+        location.reload();
+    });
+    
 </script>
 </body>
 </html>
