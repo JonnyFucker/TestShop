@@ -10,9 +10,11 @@ function updateSubTotal() {
 
 }
 function updateNavbarShoppingCart() {
-        $.get("/shoppingCart", function (shoppingCart) {
-            console.log(shoppingCart.numberOfItems);
-            $('#shoppingCartNavbar').empty();
-            $('#shoppingCartNavbar').append("<a href='#!'><i class='fa fa-shopping-cart fa-2x'> " + shoppingCart.numberOfItems + "</i></a>")
-        })
+    console.log('call update nv bar')
+    $.get("/shoppingCart", function (shoppingCart) {
+        console.log('call  get update nv bar')
+
+        $('#shoppingCartNavbar').empty();
+        $('#shoppingCartNavbar').append("<a href='cart'><i class='fa fa-shopping-cart '> " + shoppingCart.numberOfItems + " ITEM(S)</i></a>")
+    })
 }

@@ -38,7 +38,7 @@ and open the template in the editor.
                     <a href="confirmation">Confirmation</a>
                 </li>
                 <li id="shoppingCartNavbar">
-                    <a href="#!"><i class="fa fa-shopping-cart fa-2x"> 10 ITEM(S)</i></a>
+                    <a href="cart"><i class="fa fa-shopping-cart fa-2x"> 10 ITEM(S)</i></a>
                 </li>
             </ul>
         </div>

@@ -95,8 +95,6 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
-
-
         <c:forEach var="columnName" items="${cate}">
         $('#categories').append("<a class=list-group-item> <i class='fa fa-chevron-right'></i> <c:out value="${columnName.name}"/> </a>");
 
@@ -130,7 +128,7 @@
                         "<td class='col-md-3'> <button onclick='addToCart(" + val.filmId + ")' id=cartButton" + index + " class='btn btn-success type=button'>Add to card</button> <span class='glyphicon glyphicon-shopping-cart'></span> </td></tr>");
             });
             $('#movies').paginathing({
-                perPage: 4,
+                perPage: 3,
                 limitPagination: 4,
                 insertAfter: '.table',
                 containerClass: 'movies-container'

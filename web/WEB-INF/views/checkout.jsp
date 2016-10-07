@@ -11,6 +11,8 @@ and open the template in the editor.
 
     <!-- Custom CSS -->
     <link href="../../css/full-width-pics.css" rel="stylesheet">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 <body>
 <div id="nav">
@@ -48,19 +50,19 @@ and open the template in the editor.
                     <input id="submit" type="submit" class="btn btn-warning " disabled="disabled" value="Submit">
                 </form>
             </div>
-            <div class="col-lg-4">
+            <div id="deliveryInfo" class="col-lg-4 section-lead">
                 <ol id="myList">
                     <li>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, aliquid.</p>
+                        <p>Next-day delivery is guaranteed</p>
                     </li>
                     <li>
-                        <p>Quos nostrum provident ex quisquam aliquid, hic odio repellendus atque.</p>
+                        <p>A 5.00$ delivery surcharge is applied to all purchase orders</p>
                     </li>
                     <li>
-                        <p>Facilis, id dolorum distinctio, harum accusantium atque explicabo quidem consectetur.</p>
+                        <p>All dvd movies are in HD resolution </p>
                     </li>
                 </ol>
-                <div id="panelInfo" class="panel panel-info">
+                <div id="panelInfo" >
                     <div class="panel-body">
                         <div class="col-lg-6">
                             <p >subtotal : </p>
@@ -86,6 +88,7 @@ and open the template in the editor.
 <!-- Bootstrap Core JavaScript -->
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/paginathing.js"></script>
+<script src="../../script/commonScript.js" type="text/javascript"></script>
 
 <script src="../../script/navbar.js" type="text/javascript"></script>
 <script type="text/javascript">

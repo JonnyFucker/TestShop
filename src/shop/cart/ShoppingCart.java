@@ -33,9 +33,6 @@ public class ShoppingCart {
             shoppingCartItem = new ShoppingCartItem(product);
             shoppingCartItems.add(shoppingCartItem);
         }
-        System.out.println("called add");
-
-        updateNumberOfItems();
 
     }
 
@@ -46,7 +43,6 @@ public class ShoppingCart {
         }
         else
             shoppingCartItems.remove(shoppingCartItem);
-        updateNumberOfItems();
 
     }
 
@@ -55,7 +51,7 @@ public class ShoppingCart {
     }
 
     public synchronized int getNumberOfItems() {
-        System.out.println("Number of items : " + numberOfItems);
+        updateNumberOfItems();
         return numberOfItems;
     }
 
@@ -102,7 +98,6 @@ public class ShoppingCart {
     public synchronized void remove(FilmEntity filmEntity){
         ShoppingCartItem shoppingCartItem = getShoppingCartItem(filmEntity);
         shoppingCartItems.remove(shoppingCartItem);
-        updateNumberOfItems();
     }
 
 }

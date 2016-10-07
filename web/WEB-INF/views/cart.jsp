@@ -13,6 +13,8 @@ and open the template in the editor.
     <!-- Custom CSS -->
     <link href="../../css/full-width-pics.css" rel="stylesheet">
     <!-- jQuery -->
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+
 
 
     <title>Dvd store</title>
@@ -120,12 +122,14 @@ and open the template in the editor.
         $.ajax({
             type: "POST",
             data: {"filmId": id},
-            dataType: "json",
-            url: "/removeItem"
+            url: "/removeItem",
+            success: function () {
+                showShoppingCart();
+                updateSubTotal();
+                updateNavbarShoppingCart();
+            }
         });
-        showShoppingCart();
-        updateSubTotal();
-        updateNavbarShoppingCart();
+
     }
 
     $('#clearCartButton').click(function () {
