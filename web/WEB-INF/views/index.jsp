@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-lg-8">
-                <div>
+                <div id="moviesTableDiv">
                     <table id="moviesTable" class="table table-hover ">
                         <thead>
                         <tr class="text-info">
@@ -90,6 +90,8 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/paginathing.js"></script>
+<script src="../../script/commonScript.js" type="text/javascript"></script>
+<script src="../../script/navbar.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
@@ -106,15 +108,12 @@
         });
         getFilmsByCategoryId(1);
 
-
     });
 </script>
 <script type="text/javascript">
     $('#categories').on('click', 'a', function () {
         var index = $(this).index() + 1;
         getFilmsByCategoryId(index);
-
-
     })
 </script>
 
@@ -142,18 +141,20 @@
 
 <script type="text/javascript">
     function addToCart(filmId) {
-
         $.ajax({
             type: "POST",
             data: {"filmId": filmId},
-            dataType: "json",
-            url: "/addToCart"
+            url: "/addToCart",
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(textStatus);
+            },
+            success: function () {
+               updateNavbarShoppingCart();
+            }
         });
     }
 </script>
 
-<script src="../../script/navbar.js" type="text/javascript">
-</script>
 
 </body>
 

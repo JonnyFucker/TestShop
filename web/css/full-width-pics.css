@@ -61,11 +61,12 @@ footer {
 }
 
 .subtotal{
+    margin-top: 10px;
     font-size: 20px;
 }
 .shoppingButtons{
-    margin-bottom:10px;
-    margin-top:15px;
+    margin-bottom:30px;
+    margin-top:70px;
 }
 
 #myList > li {
@@ -98,9 +99,12 @@ footer {
 }
 #movies{
     font-size: 12px;
+
 }
 #moviesTable{
     margin-top: 12px;
+}
+#moviesTableDiv{
 }
 .my-error-class {
     color:red;
@@ -108,6 +112,11 @@ footer {
 .my-valid-class {
     color:green;
 }
+
+#cartTable th{
+    background-color: #5bc0de;
+}
+
 @media(max-width:768px) {
     section {
         padding-top: 25px;

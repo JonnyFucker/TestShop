@@ -22,11 +22,9 @@ public class CartManagementController {
     private FilmDAO filmDAO;
 
     @RequestMapping(value = "/addToCart", method = RequestMethod.POST)
-    public String addToShoppingCart(@RequestParam("filmId") int filmId) {
+    public void addToShoppingCart(@RequestParam("filmId") int filmId) {
         FilmEntity filmEntity = filmDAO.getFilmById(filmId);
         shoppingCart.addItem(filmEntity);
-
-        return "index";
     }
 
     @RequestMapping(value = "/updateQuantityInCart", method = RequestMethod.POST)

@@ -9,7 +9,8 @@ and open the template in the editor.
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -36,9 +37,18 @@ and open the template in the editor.
                 <li>
                     <a href="confirmation">Confirmation</a>
                 </li>
+                <li id="shoppingCartNavbar">
+                    <a href="#!"><i class="fa fa-shopping-cart fa-2x"> 10 ITEM(S)</i></a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            updateNavbarShoppingCart();
+        })
+    </script>
 </nav>

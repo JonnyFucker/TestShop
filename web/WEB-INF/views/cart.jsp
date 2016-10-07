@@ -24,35 +24,37 @@ and open the template in the editor.
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-8 col-md-8 col-lg-8 col-md-offset-1">
-                <table class="table-hover table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th class="text-center">Price</th>
-                        <th class="text-center">Total</th>
-                        <th class="text-center">Remove</th>
-                    </tr>
-                    </thead>
-                    <tbody id="cartTableBody">
+            <div class="col-lg-12">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <table id="cartTable" class="table-hover table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Total</th>
+                            <th class="text-center">Remove</th>
+                        </tr>
+                        </thead>
+                        <tbody id="cartTableBody">
 
-                    </tbody>
-                </table>
-                <div id="subTotal" class="col-lg-8 col-md-offset-1">
+                        </tbody>
+                    </table>
+                    <div id="subTotal" class="col-lg-8  subtotal">
+                    </div>
+                    <div class=" shoppingButtons col-lg-offset-3 ">
+                        <a href="checkout" id="checkoutButton" type="button" class="btn btn-success  text-center">Checkout
+                            <span class="glyphicon glyphicon-play"></span>
+                        </a>
 
-
-                </div>
-                <div class="col-lg-8 col-lg-offset-4 shoppingButtons">
-                    <button id="clearCartButton" type="button" class="btn btn-danger ">Clear cart
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                    <a href="index" id="continueShoppingButton" type="button" class="btn btn-default col-lg-offset-1">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>Continue Shopping
-                    </a>
-                    <a href="checkout" id="checkoutButton" type="button" class="btn btn-success col-lg-offset-1 ">Checkout
-                        <span class="glyphicon glyphicon-play"></span>
-                    </a>
+                        <a href="index" id="continueShoppingButton" type="button"
+                           class="btn btn-default text-center">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>Continue Shopping
+                        </a>
+                        <button id="clearCartButton" type="button" class="btn btn-danger text-center">Clear cart
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,7 +66,7 @@ and open the template in the editor.
 <script src="../../js/paginathing.js"></script>
 <script src="../../script/navbar.js" type="text/javascript"></script>
 <script src="../../script/commonScript.js" type="text/javascript"></script>
-<!-- get json with shopping cart, iterate through lis contains products, each product is FilmEntity, get proper value -->
+<!-- get json with shopping cart, iterate through list contains products, each product is FilmEntity, get proper value -->
 <script type="text/javascript">
     $(document).ready(function () {
         showShoppingCart();
@@ -82,6 +84,7 @@ and open the template in the editor.
             success: function (shoppingCartItem) {
                 removeAndAddTotalPrice(shoppingCartItem);
                 updateSubTotal();
+                updateNavbarShoppingCart();
             }
         });
     }
@@ -94,7 +97,7 @@ and open the template in the editor.
                     "<td class='col-lg-1'><input min='1' max='10' oninput='changeQuantity(" + shoppingCartItem.product.filmId + ",$(this).val())' type='number' class='form-control' id='exampleInputNumber' value='" + shoppingCartItem.quantity + "'> </td>" +
                     "<td class='col-lg-1 text-center'><strong>" + shoppingCartItem.product.replacementCost + " $</strong></td>" +
                     "<td id=totalPrice" + shoppingCartItem.product.filmId + " class='col-lg-2 text-center'><strong>" + shoppingCartItem.totalPrice + " $</strong></td>" +
-                    " <td class='col-lg-2'><button onclick='removeItemFromCart(" + shoppingCartItem.product.filmId + ")' type='button' class='btn btn-danger'>" +
+                    " <td class='col-lg-2 text-center'><button onclick='removeItemFromCart(" + shoppingCartItem.product.filmId + ")' type='button' class='btn btn-danger'>" +
                     " <span class='glyphicon glyphicon-remove'></span> Remove" +
                     "</button> </td> </tr>")
         });
@@ -122,13 +125,14 @@ and open the template in the editor.
         });
         showShoppingCart();
         updateSubTotal();
+        updateNavbarShoppingCart();
     }
-    
+
     $('#clearCartButton').click(function () {
         $.get("/clearCart");
         location.reload();
     });
-    
+
 </script>
 </body>
 </html>

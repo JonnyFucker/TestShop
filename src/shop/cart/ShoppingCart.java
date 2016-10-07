@@ -33,6 +33,10 @@ public class ShoppingCart {
             shoppingCartItem = new ShoppingCartItem(product);
             shoppingCartItems.add(shoppingCartItem);
         }
+        System.out.println("called add");
+
+        updateNumberOfItems();
+
     }
 
     public synchronized void update(FilmEntity product, short quantity) {
@@ -42,6 +46,7 @@ public class ShoppingCart {
         }
         else
             shoppingCartItems.remove(shoppingCartItem);
+        updateNumberOfItems();
 
     }
 
@@ -50,10 +55,16 @@ public class ShoppingCart {
     }
 
     public synchronized int getNumberOfItems() {
-        for (ShoppingCartItem item : shoppingCartItems) {
-            numberOfItems += item.getQuantity();
-        }
+        System.out.println("Number of items : " + numberOfItems);
         return numberOfItems;
+    }
+
+    private void updateNumberOfItems() {
+        int totalItems = 0;
+        for (ShoppingCartItem item : shoppingCartItems) {
+            totalItems += item.getQuantity();
+        }
+        this.numberOfItems = totalItems;
     }
 
     public synchronized double getSubTotal() {
@@ -91,6 +102,7 @@ public class ShoppingCart {
     public synchronized void remove(FilmEntity filmEntity){
         ShoppingCartItem shoppingCartItem = getShoppingCartItem(filmEntity);
         shoppingCartItems.remove(shoppingCartItem);
+        updateNumberOfItems();
     }
 
 }
