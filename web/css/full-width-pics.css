@@ -99,6 +99,9 @@ footer {
 #movies{
     font-size: 12px;
 }
+#moviesTable{
+    margin-top: 12px;
+}
 .my-error-class {
     color:red;
 }

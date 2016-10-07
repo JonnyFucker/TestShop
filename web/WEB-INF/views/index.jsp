@@ -15,6 +15,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="../../css/full-width-pics.css" rel="stylesheet">
@@ -42,15 +43,23 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-lg-4">
-                <p class="lead">Dvd online shop categories</p>
+                <h3 class="list-group-item active"><i class="fa fa-align-justify"></i> Categories</h3>
                 <div class="list-group" id="categories">
 
                 </div>
             </div>
-            <div class="col-lg-8 col-md-9">
-                <div class="table-responsive">
-                    <p class="lead">Movie description or something</p>
-                    <table id="example" class="table table-bordered table-hover table-striped ">
+            <div class="col-md-9 col-lg-8">
+                <div>
+                    <table id="moviesTable" class="table table-hover ">
+                        <thead>
+                        <tr class="text-info">
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Details</th>
+                            <th>Add to card</th>
+                        </tr>
+                        </thead>
                         <tbody id="movies">
 
                         </tbody>
@@ -87,12 +96,12 @@
 
 
         <c:forEach var="columnName" items="${cate}">
-        $('#categories').append("<a class='list-group-item'> <c:out value="${columnName.name}"/> </a>");
+        $('#categories').append("<a class=list-group-item> <i class='fa fa-chevron-right'></i> <c:out value="${columnName.name}"/> </a>");
 
         </c:forEach>
 
         $('#categories').paginathing({
-            perPage: 4,
+            perPage: 5,
             limitPagination: 4
         });
         getFilmsByCategoryId(1);
@@ -116,7 +125,7 @@
         $.get("/category/" + id, function (data) {
             $.each(data, function (index, val) {
                 $('#movies').append("<tr> <td class='col-md-2'>" + val.title + "</td> " +
-                        "<td class='col-md-5'><i>" + val.description + "</i></td>" +
+                        "<td class='col-md-5'><i><q>" + val.description + "</q></i></td>" +
                         " <td class='col-md-1'>" + val.replacementCost + " $ </td> " +
                         "<td class='col-md-1'> <button class='btn  btn-info type=button'>Details</button></td> " +
                         "<td class='col-md-3'> <button onclick='addToCart(" + val.filmId + ")' id=cartButton" + index + " class='btn btn-success type=button'>Add to card</button> <span class='glyphicon glyphicon-shopping-cart'></span> </td></tr>");

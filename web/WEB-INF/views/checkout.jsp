@@ -70,6 +70,7 @@ and open the template in the editor.
                             <p id="subTotal" class="toRight"> $5</p>
                             <p class="toRight "> $5</p>
                         </div>
+
                     </div>
                 </div>
             </div>
