@@ -3,6 +3,8 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<%@page pageEncoding="UTF-8"%>
+
 <html>
 <head>
     <title>Checkout</title>
@@ -21,10 +23,14 @@ and open the template in the editor.
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <form id="checkoutForm" action="confirmation">
+                <form id="checkoutForm" action="purchase">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input name="name" type="text" class="form-control" id="name" placeholder="Name" required>
+                        <label for="firstName">Name</label>
+                        <input name="firstName" type="text" class="form-control" id="firstName" placeholder="first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Name</label>
+                        <input name="lastName" type="text" class="form-control" id="lastName" placeholder="last name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email address</label>
@@ -37,6 +43,10 @@ and open the template in the editor.
                     <div class="form-group">
                         <label for="city">City / Town</label>
                         <input id="city" class="form-control" name="city" type="text" placeholder="city">
+                    </div>
+                    <div class="form-group">
+                        <label for="postalCode">Postal code</label>
+                        <input id="postalCode" class="form-control" name="postalCode" type="text" placeholder="postal code">
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
@@ -59,7 +69,7 @@ and open the template in the editor.
                         <p>A 5.00$ delivery surcharge is applied to all purchase orders</p>
                     </li>
                     <li>
-                        <p>All dvd movies are in HD resolution </p>
+                        <p>All dvd movies are in HD quality, 1080p resolution </p>
                     </li>
                 </ol>
                 <div id="panelInfo" >
@@ -98,7 +108,6 @@ and open the template in the editor.
                 $('#submit').prop("disabled", false).addClass('btn-success').removeClass('btn-warning');
             } else {
                 $('#submit').prop("disabled", true).addClass('btn-warning').addClass('btn-success');
-
             }
         });
     });
@@ -106,6 +115,9 @@ and open the template in the editor.
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $.validator.addMethod( "postcodeUK", function( value, element ) {
+            return this.optional( element ) || /^((([A-PR-UWYZ][0-9])|([A-PR-UWYZ][0-9][0-9])|([A-PR-UWYZ][A-HK-Y][0-9])|([A-PR-UWYZ][A-HK-Y][0-9][0-9])|([A-PR-UWYZ][0-9][A-HJKSTUW])|([A-PR-UWYZ][A-HK-Y][0-9][ABEHMNPRVWXY]))\s?([0-9][ABD-HJLNP-UW-Z]{2})|(GIR)\s?(0AA))$/i.test( value );
+        }, "Please specify a valid PL postcode" );
         $('#checkoutForm').validate({
             errorClass: "my-error-class",
             validClass: "my-valid-class",
@@ -121,7 +133,12 @@ and open the template in the editor.
                 },
                 city: {
                     required: true
+                },
+                postalCode:{
+                    required: true
                 }
+
+
             }
         });
         $.get("/shoppingCart", function (shoppingCart) {

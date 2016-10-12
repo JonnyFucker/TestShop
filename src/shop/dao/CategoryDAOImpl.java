@@ -18,8 +18,6 @@ public class CategoryDAOImpl implements CategoryDAO {
     private SessionFactory sessionFactory;
 
     public CategoryDAOImpl() {
-        //this.session = HibernateUtil.getSession();
-
     }
 
     @Autowired

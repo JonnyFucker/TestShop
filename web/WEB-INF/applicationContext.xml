@@ -41,7 +41,8 @@
         <constructor-arg ref="sessionFactory"></constructor-arg>
     </bean>
     <bean id="filmDAO" class="shop.dao.FilmDAOImpl">
-        <constructor-arg ref="sessionFactory"></constructor-arg>
+    </bean>
+    <bean id="customerDao" class="shop.dao.CustomerDaoImpl">
     </bean>
 
 </beans>

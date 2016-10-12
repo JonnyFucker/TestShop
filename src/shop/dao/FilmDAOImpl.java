@@ -12,21 +12,12 @@ import java.util.List;
 /**
  * Created by Tomek on 2016-10-04.
  */
-public class FilmDAOImpl implements FilmDAO {
-
-    private Session session = null;
-    private SessionFactory sessionFactory;
-
-    @Autowired
-    public FilmDAOImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+public class FilmDAOImpl extends AbstractDao implements FilmDAO {
 
     @Override
     @Transactional
     public FilmEntity getFilmById(int id) {
-        session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from FilmEntity film where film.filmId=" + id);
+        Query query = getSession().createQuery("from FilmEntity film where film.filmId=" + id);
         FilmEntity filmEntity = (FilmEntity) query.uniqueResult();
         return filmEntity;
     }
@@ -34,8 +25,8 @@ public class FilmDAOImpl implements FilmDAO {
     @Override
     @Transactional
     public List<FilmEntity> getFilmsByCategoryId(int id) {
-        session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select fc.filmByFilmId from FilmCategoryEntity fc " +
+
+        Query query = getSession().createQuery("select fc.filmByFilmId from FilmCategoryEntity fc " +
                 "where fc.categoryId=" + id);
         List<FilmEntity> filmEntities = query.list();
         return filmEntities;

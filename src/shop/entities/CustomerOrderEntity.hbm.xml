@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="shop.entities.CustomerOrderEntity" table="customer_order" schema="sakila">
+        <id name="id" column="id"/>
+        <property name="amount" column="amount"/>
+        <property name="dateCreated" column="date_created"/>
+        <property name="confirmationNumber" column="confirmation_number"/>
+        <many-to-one name="customerByCustomerId" class="shop.entities.CustomerEntity">
+            <column name="customer_id"/>
+        </many-to-one>
+        <set name="orderedProductsById" inverse="true">
+            <key>
+                <column name="customer_order_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="shop.entities.OrderedProductEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>

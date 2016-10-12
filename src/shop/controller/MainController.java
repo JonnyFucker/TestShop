@@ -6,10 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.ServletContextAware;
+import shop.cart.ShoppingCart;
 import shop.dao.CategoryDAO;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Tomek on 2016-10-02.
@@ -18,11 +20,9 @@ import javax.servlet.ServletContext;
 public class MainController implements ServletContextAware {
 
     private ServletContext servletContext;
-
     @PostConstruct
     public void init() {
         servletContext.setAttribute("cate", categoryDAO.getCategoryEntities());
-
     }
 
     @Override
@@ -50,6 +50,7 @@ public class MainController implements ServletContextAware {
 
     @RequestMapping(value = "/checkout")
     public String checkout() {
+
         return "checkout";
 
     }
