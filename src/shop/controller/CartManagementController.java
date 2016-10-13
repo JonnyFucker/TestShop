@@ -2,6 +2,7 @@ package shop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import shop.cart.ShoppingCart;
@@ -9,6 +10,7 @@ import shop.cart.ShoppingCartItem;
 import shop.dao.CustomerDao;
 import shop.dao.FilmDAO;
 import shop.entities.*;
+import utils.OrderParameters;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
@@ -17,7 +19,7 @@ import java.util.Date;
 /**
  * Created by neptis on 06.10.16.
  */
-@org.springframework.web.bind.annotation.RestController
+@Controller
 @Scope("request")
 public class CartManagementController {
 
@@ -31,30 +33,35 @@ public class CartManagementController {
     private CustomerDao customerDao;
 
     @RequestMapping(value = "/addToCart", method = RequestMethod.POST)
+    @ResponseBody
     public void addToShoppingCart(@RequestParam("filmId") int filmId) {
         FilmEntity filmEntity = filmDAO.getFilmById(filmId);
         shoppingCart.addItem(filmEntity);
     }
 
     @RequestMapping(value = "/updateQuantityInCart", method = RequestMethod.POST)
+    @ResponseBody
     public ShoppingCartItem updateQuantityInShoppingCart(@RequestParam("filmId") int filmId, @RequestParam("quantity") short quantity) {
         FilmEntity filmEntity = filmDAO.getFilmById(filmId);
         shoppingCart.update(filmEntity, quantity);
         return shoppingCart.getShoppingCartItem(filmEntity);
     }
 
-    @RequestMapping(value = "/shoppingCart")
+    @RequestMapping(value = "/shoppingCart", produces = "application/json")
+    @ResponseBody
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
 
     @RequestMapping(value = "/removeItem", method = RequestMethod.POST)
+    @ResponseBody
     public void removeItemFromCart(@RequestParam("filmId") int filmId) {
         FilmEntity filmEntity = filmDAO.getFilmById(filmId);
         shoppingCart.remove(filmEntity);
     }
 
     @RequestMapping(value = "/clearCart")
+    @ResponseBody
     public void clearCart() {
         shoppingCart.clear();
     }
@@ -72,6 +79,8 @@ public class CartManagementController {
         String postalCode = httpServletRequest.getParameter("postalCode");
         String address = httpServletRequest.getParameter("address");
 
+        OrderParameters orderParameters = new OrderParameters.OrderParametersBuilder().build();
+
         System.out.println(firstName);
         System.out.println(lastName);
         System.out.println(email);
@@ -81,17 +90,9 @@ public class CartManagementController {
         System.out.println(address);
         System.out.println("shopping cart items : " + shoppingCart.getNumberOfItems());
 
-        CustomerEntity customerEntity = new CustomerEntity();
-        customerEntity.setEmail(email);
-        customerEntity.setFirstName(firstName);
-        customerEntity.setActive((byte) 1);
-        customerEntity.setLastName(lastName);
-        customerEntity.setLastUpdate(new Timestamp(new Date().getTime()));
-        customerEntity.setStoreId(1);
-        customerEntity.setAddressId(1);
 
-        CustomerOrderEntity customerOrderEntity;
-        //customerDao.saveCustomer(customerEntity);
+
+
         return modelAndView;
     }
 }
