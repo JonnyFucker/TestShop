@@ -9,6 +9,7 @@ import shop.cart.ShoppingCart;
 import shop.cart.ShoppingCartItem;
 import shop.dao.CustomerDao;
 import shop.dao.FilmDAO;
+import shop.dao.OrderManager;
 import shop.entities.*;
 import utils.OrderParameters;
 
@@ -31,6 +32,9 @@ public class CartManagementController {
 
     @Autowired
     private CustomerDao customerDao;
+
+    @Autowired
+    private OrderManager orderManager;
 
     @RequestMapping(value = "/addToCart", method = RequestMethod.POST)
     @ResponseBody
@@ -79,7 +83,6 @@ public class CartManagementController {
         String postalCode = httpServletRequest.getParameter("postalCode");
         String address = httpServletRequest.getParameter("address");
 
-        OrderParameters orderParameters = new OrderParameters.OrderParametersBuilder().build();
 
         System.out.println(firstName);
         System.out.println(lastName);
@@ -90,7 +93,21 @@ public class CartManagementController {
         System.out.println(address);
         System.out.println("shopping cart items : " + shoppingCart.getNumberOfItems());
 
+        OrderParameters orderParameters =
+                new OrderParameters.OrderParametersBuilder()
+                        .withAddress(address)
+                        .withCity(city)
+                        .withEmail(email)
+                        .withFirstName(firstName)
+                        .withLastName(lastName)
+                        .withPostalCode(postalCode)
+                        .withPhone(phone)
+                        .withShoppingCart(shoppingCart)
+                        .build();
 
+
+
+        orderManager.placeOrder(orderParameters);
 
 
         return modelAndView;
