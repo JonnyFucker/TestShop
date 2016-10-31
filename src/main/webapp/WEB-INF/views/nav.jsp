@@ -23,7 +23,7 @@ and open the template in the editor.
             <ul class="nav navbar-nav">
                 <li>
                     <a>
-                        <img class="img-size" src="images/tz.jpeg" alt="">
+                        <img class="img-size" src="/resources/images/tz.jpeg" alt="">
                     </a>
                 </li>
                 <li>

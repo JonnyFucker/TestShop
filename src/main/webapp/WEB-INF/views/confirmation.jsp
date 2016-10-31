@@ -10,11 +10,11 @@ and open the template in the editor.
         <title>Confirmation</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="../../css/full-width-pics.css" rel="stylesheet">
+        <link href="/resources/css/full-width-pics.css" rel="stylesheet">
     </head>
     <body>
         <div id="nav">
@@ -85,11 +85,11 @@ and open the template in the editor.
         </section>
 
 
-        <script src="../../js/jquery-3.1.1.js"></script>
+        <script src="/resources/js/jquery-3.1.1.js"></script>
         <!-- Bootstrap Core JavaScript -->
-        <script src="../../js/bootstrap.min.js"></script>
-        <script src="../../js/paginathing.js"></script>
-        <script src="../../script/commonScript.js" type="text/javascript"></script>
-        <script src="../../script/navbar.js" type="text/javascript">
+        <script src="/resources/js/bootstrap.min.js"></script>
+        <script src="/resources/js/paginathing.js"></script>
+        <script src="/resources/script/commonScript.js" type="text/javascript"></script>
+        <script src="/resources/script/navbar.js" type="text/javascript">
         </script>    </body>
 </html>

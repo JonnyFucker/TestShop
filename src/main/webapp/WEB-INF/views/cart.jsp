@@ -10,12 +10,12 @@ and open the template in the editor.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap Core CSS -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../../css/full-width-pics.css" rel="stylesheet">
+    <link href="/resources/css/full-width-pics.css" rel="stylesheet">
     <!-- jQuery -->
-    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
 
 
 
@@ -64,12 +64,12 @@ and open the template in the editor.
         </div>
     </div>
 </section>
-<script src="../../js/jquery-3.1.1.js"></script>
+<script src="/resources/js/jquery-3.1.1.js"></script>
 <!-- Bootstrap Core JavaScript -->
-<script src="../../js/bootstrap.min.js"></script>
-<script src="../../js/paginathing.js"></script>
-<script src="../../script/navbar.js" type="text/javascript"></script>
-<script src="../../script/commonScript.js" type="text/javascript"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
+<script src="/resources/js/paginathing.js"></script>
+<script src="/resources/script/navbar.js" type="text/javascript"></script>
+<script src="/resources/script/commonScript.js" type="text/javascript"></script>
 <!-- get json with shopping cart, iterate through list contains products, each product is FilmEntity, get proper value -->
 <script type="text/javascript">
     $(document).ready(function () {
