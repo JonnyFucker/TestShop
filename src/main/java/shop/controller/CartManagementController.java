@@ -14,8 +14,11 @@ import shop.entities.*;
 import utils.OrderParameters;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by neptis on 06.10.16.
@@ -71,45 +74,30 @@ public class CartManagementController {
     }
 
     @RequestMapping(value = "/purchase")
-    public ModelAndView purchase(HttpServletRequest httpServletRequest) {
-        //TODO should do something better than ModelAndView
-        ModelAndView modelAndView = new ModelAndView("confirmation");
-
-        String firstName = httpServletRequest.getParameter("firstName");
-        String lastName = httpServletRequest.getParameter("lastName");
-        String email = httpServletRequest.getParameter("email");
-        String phone = httpServletRequest.getParameter("phone");
-        String city = httpServletRequest.getParameter("city");
-        String postalCode = httpServletRequest.getParameter("postalCode");
-        String address = httpServletRequest.getParameter("address");
-
-
-        System.out.println(firstName);
-        System.out.println(lastName);
-        System.out.println(email);
-        System.out.println(phone);
-        System.out.println(city);
-        System.out.println(postalCode);
-        System.out.println(address);
-        System.out.println("shopping cart items : " + shoppingCart.getNumberOfItems());
+    public String purchase(HttpServletRequest httpServletRequest) throws IOException {
 
         OrderParameters orderParameters =
-                 OrderParameters.builder()
-                        .address(address)
-                        .city(city)
-                        .email(email)
-                        .firstName(firstName)
-                        .lastName(lastName)
-                        .postalCode(postalCode)
-                        .phone(phone)
+                OrderParameters.builder()
+                        .address(httpServletRequest.getParameter("address"))
+                        .city(httpServletRequest.getParameter("city"))
+                        .email(httpServletRequest.getParameter("email"))
+                        .firstName(httpServletRequest.getParameter("firstName"))
+                        .lastName(httpServletRequest.getParameter("lastName"))
+                        .postalCode(httpServletRequest.getParameter("postalCode"))
+                        .phone(httpServletRequest.getParameter("phone"))
                         .shoppingCart(shoppingCart)
                         .build();
 
+        int orderId = orderManager.placeOrder(orderParameters);
+        Map<String, Object> orderMap = orderManager.getOrderDetails(orderId);
+        // place order details in request scope
+        httpServletRequest.setAttribute("customer", orderMap.get("customer"));
+        httpServletRequest.setAttribute("products", orderMap.get("products"));
+        httpServletRequest.setAttribute("orderRecord", orderMap.get("orderRecord"));
+        httpServletRequest.setAttribute("orderedProducts", orderMap.get("orderedProducts"));
 
+        httpServletRequest.getSession().invalidate();
 
-        orderManager.placeOrder(orderParameters);
-
-
-        return modelAndView;
+        return "confirmation";
     }
 }

@@ -35,9 +35,9 @@ and open the template in the editor.
                 <li>
                     <a href="checkout">Checkout</a>
                 </li>
-                <li>
+<%--                <li>
                     <a href="confirmation">Confirmation</a>
-                </li>
+                </li>--%>
                 <li id="shoppingCartNavbar">
                     <a href="cart"><i class="fa fa-shopping-cart fa-2x"> 10 ITEM(S)</i></a>
                 </li>

@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MainController implements ServletContextAware {
 
     private ServletContext servletContext;
+
     @PostConstruct
     public void init() {
         servletContext.setAttribute("cate", categoryDAO.getCategoryEntities());
@@ -50,9 +51,7 @@ public class MainController implements ServletContextAware {
 
     @RequestMapping(value = "/checkout")
     public String checkout() {
-
         return "checkout";
-
     }
 
     @RequestMapping(value = "/index")
@@ -61,7 +60,9 @@ public class MainController implements ServletContextAware {
     }
 
     @RequestMapping(value = "/confirmation")
-    public String confirmation() {
+    public String confirmation(HttpServletRequest httpServletRequest) {
+        System.out.println(httpServletRequest.getAttribute("orderId"));
+
         return "confirmation";
     }
 

@@ -1,5 +1,6 @@
 package shop.dao;
 
+import shop.entities.CityEntity;
 import shop.entities.CustomerEntity;
 
 /**

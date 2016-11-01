@@ -6,25 +6,26 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by Tomek on 2016-10-11.
+ * Created by Tomek on 2016-11-01.
  */
 @Entity
-@Table(name = "customer_order", schema = "sakila")
+@Table(name = "customer_order", schema = "sakila", catalog = "")
 public class CustomerOrderEntity {
-    private int id;
+    private Integer id;
     private BigDecimal amount;
     private Timestamp dateCreated;
-    private int confirmationNumber;
+    private Integer confirmationNumber;
     private CustomerEntity customerByCustomerId;
     private Collection<OrderedProductEntity> orderedProductsById;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -50,11 +51,11 @@ public class CustomerOrderEntity {
 
     @Basic
     @Column(name = "confirmation_number")
-    public int getConfirmationNumber() {
+    public Integer getConfirmationNumber() {
         return confirmationNumber;
     }
 
-    public void setConfirmationNumber(int confirmationNumber) {
+    public void setConfirmationNumber(Integer confirmationNumber) {
         this.confirmationNumber = confirmationNumber;
     }
 
@@ -65,24 +66,25 @@ public class CustomerOrderEntity {
 
         CustomerOrderEntity that = (CustomerOrderEntity) o;
 
-        if (id != that.id) return false;
-        if (confirmationNumber != that.confirmationNumber) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (amount != null ? !amount.equals(that.amount) : that.amount != null) return false;
         if (dateCreated != null ? !dateCreated.equals(that.dateCreated) : that.dateCreated != null) return false;
+        if (confirmationNumber != null ? !confirmationNumber.equals(that.confirmationNumber) : that.confirmationNumber != null)
+            return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (amount != null ? amount.hashCode() : 0);
         result = 31 * result + (dateCreated != null ? dateCreated.hashCode() : 0);
-        result = 31 * result + confirmationNumber;
+        result = 31 * result + (confirmationNumber != null ? confirmationNumber.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", nullable = false)
     public CustomerEntity getCustomerByCustomerId() {
         return customerByCustomerId;

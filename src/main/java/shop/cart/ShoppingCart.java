@@ -18,6 +18,7 @@ public class ShoppingCart {
     private List<ShoppingCartItem> shoppingCartItems;
     private int numberOfItems = 0;
     private double total = 0;
+    private double surcharge = 0;
 
     public ShoppingCart() {
         this.shoppingCartItems = new ArrayList<>();
@@ -40,8 +41,7 @@ public class ShoppingCart {
         ShoppingCartItem shoppingCartItem = getShoppingCartItem(product);
         if (quantity > 0) {
             shoppingCartItem.setQuantity(quantity);
-        }
-        else
+        } else
             shoppingCartItems.remove(shoppingCartItem);
 
     }
@@ -68,19 +68,17 @@ public class ShoppingCart {
         for (ShoppingCartItem item : shoppingCartItems) {
             amount += item.getTotalPrice();
         }
-        return new BigDecimal(amount).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+        return new BigDecimal(amount).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
-    public synchronized void calculateTotal(double surcharge){
 
-
-        total = surcharge + this.getSubTotal();
-        total = new BigDecimal(total)
-                .setScale(2, BigDecimal.ROUND_HALF_UP)
-                .doubleValue();
+    public void setSurcharge(double surcharge) {
+        this.surcharge = surcharge;
     }
+
 
     public synchronized double getTotal() {
-        return total;
+        calculateTotal();
+        return this.total;
     }
 
     public synchronized ShoppingCartItem getShoppingCartItem(FilmEntity product) {
@@ -90,14 +88,23 @@ public class ShoppingCart {
                 .orElse(null);
     }
 
-    public synchronized void clear(){
+    public synchronized void clear() {
         shoppingCartItems.clear();
         numberOfItems = 0;
         total = 0;
     }
-    public synchronized void remove(FilmEntity filmEntity){
+
+    public synchronized void remove(FilmEntity filmEntity) {
         ShoppingCartItem shoppingCartItem = getShoppingCartItem(filmEntity);
         shoppingCartItems.remove(shoppingCartItem);
     }
+
+    private synchronized void calculateTotal() {
+        this.total = this.surcharge + this.getSubTotal();
+        this.total = new BigDecimal(total)
+                .setScale(2, BigDecimal.ROUND_HALF_UP)
+                .doubleValue();
+    }
+
 
 }

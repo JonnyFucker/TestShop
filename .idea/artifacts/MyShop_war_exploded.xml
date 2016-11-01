@@ -35,6 +35,16 @@
           <element id="library" level="project" name="Maven: org.apache.commons:commons-dbcp2:2.0" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-pool2:2.2" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.38" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.5.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.5.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.5.0" />
+          <element id="library" level="project" name="Maven: org.postgresql:postgresql:9.4-1200-jdbc41" />
+          <element id="library" level="project" name="Maven: com.github.dblock.waffle:waffle-jna:1.7" />
+          <element id="library" level="project" name="Maven: net.java.dev.jna:jna:4.1.0" />
+          <element id="library" level="project" name="Maven: net.java.dev.jna:jna-platform:4.1.0" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.7" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:18.0" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.7.7" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -5,51 +5,31 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by Tomek on 2016-10-11.
+ * Created by Tomek on 2016-11-01.
  */
 @Entity
 @Table(name = "customer", schema = "sakila")
 public class CustomerEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Short customerId;
     private String firstName;
     private String lastName;
     private String email;
-    private byte active;
+    private Byte active;
     private Timestamp createDate;
     private Timestamp lastUpdate;
+    private Short storeId;
+    private AddressEntity addressByAddressId;
     private Collection<CustomerOrderEntity> customerOrdersByCustomerId;
-    private int storeId;
-    private int addressId;
 
-    @Basic
-    @Column(name = "store_id")
-    public int getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(int storeId) {
-        this.storeId = storeId;
-    }
-
-    @Basic
-    @Column(name = "address_id")
-    public int getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
-    }
-
-    @Basic(optional = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    public int getId() {
-        return id;
+    public Short getCustomerId() {
+        return customerId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCustomerId(Short customerId) {
+        this.customerId = customerId;
     }
 
     @Basic
@@ -84,11 +64,11 @@ public class CustomerEntity {
 
     @Basic
     @Column(name = "active")
-    public byte getActive() {
+    public Byte getActive() {
         return active;
     }
 
-    public void setActive(byte active) {
+    public void setActive(Byte active) {
         this.active = active;
     }
 
@@ -100,6 +80,16 @@ public class CustomerEntity {
 
     public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
+    }
+
+    @Basic
+    @Column(name = "store_id")
+    public Short getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Short storeId) {
+        this.storeId = storeId;
     }
 
     @Basic
@@ -119,10 +109,11 @@ public class CustomerEntity {
 
         CustomerEntity that = (CustomerEntity) o;
 
-        if (active != that.active) return false;
+        if (customerId != null ? !customerId.equals(that.customerId) : that.customerId != null) return false;
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
         if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (active != null ? !active.equals(that.active) : that.active != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
         if (lastUpdate != null ? !lastUpdate.equals(that.lastUpdate) : that.lastUpdate != null) return false;
 
@@ -131,16 +122,27 @@ public class CustomerEntity {
 
     @Override
     public int hashCode() {
-        int result = firstName != null ? firstName.hashCode() : 0;
+        int result = customerId != null ? customerId.hashCode() : 0;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (int) active;
+        result = 31 * result + (active != null ? active.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
         result = 31 * result + (lastUpdate != null ? lastUpdate.hashCode() : 0);
         return result;
     }
 
-    @OneToMany(mappedBy = "customerByCustomerId")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "address_id", nullable = false)
+    public AddressEntity getAddressByAddressId() {
+        return addressByAddressId;
+    }
+
+    public void setAddressByAddressId(AddressEntity addressByAddressId) {
+        this.addressByAddressId = addressByAddressId;
+    }
+
+    @OneToMany(mappedBy = "customerByCustomerId", cascade = CascadeType.ALL)
     public Collection<CustomerOrderEntity> getCustomerOrdersByCustomerId() {
         return customerOrdersByCustomerId;
     }

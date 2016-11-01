@@ -4,28 +4,24 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+<!--
+        <property name="hbm2ddl.auto">update</property>
+-->
+
         <property name="hibernate.dialect">
             org.hibernate.dialect.MySQLDialect
         </property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <!-- Assume test is the database name -->
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sakila</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password">tomek</property>
         <mapping resource="hibernate/CategoryEntity.hbm.xml"/>
         <mapping class="shop.entities.CategoryEntity"/>
         <mapping class="shop.entities.FilmEntity"/>
         <mapping resource="hibernate/FilmEntity.hbm.xml"/>
         <mapping class="shop.entities.FilmCategoryEntity"/>
         <mapping resource="hibernate/FilmCategoryEntity.hbm.xml"/>
-        <mapping resource="hibernate/CustomerEntity.hbm.xml"/>
-        <mapping class="shop.entities.CustomerEntity"/>
-        <mapping class="shop.entities.CustomerOrderEntity"/>
-        <mapping resource="hibernate/CustomerOrderEntity.hbm.xml"/>
-        <mapping resource="hibernate/OrderedProductEntity.hbm.xml"/>
-        <mapping class="shop.entities.OrderedProductEntity"/>
+
 
         <!-- DB schema will be updated if needed -->
-        <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>
 </hibernate-configuration>

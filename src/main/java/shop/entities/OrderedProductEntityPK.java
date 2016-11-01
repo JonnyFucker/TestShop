@@ -5,29 +5,29 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by Tomek on 2016-10-11.
+ * Created by Tomek on 2016-11-01.
  */
 public class OrderedProductEntityPK implements Serializable {
-    private int customerOrderId;
-    private short filmFilmId;
+    private Integer customerOrderId;
+    private Integer filmFilmId;
 
     @Column(name = "customer_order_id")
     @Id
-    public int getCustomerOrderId() {
+    public Integer getCustomerOrderId() {
         return customerOrderId;
     }
 
-    public void setCustomerOrderId(int customerOrderId) {
+    public void setCustomerOrderId(Integer customerOrderId) {
         this.customerOrderId = customerOrderId;
     }
 
     @Column(name = "film_film_id")
     @Id
-    public short getFilmFilmId() {
+    public Integer getFilmFilmId() {
         return filmFilmId;
     }
 
-    public void setFilmFilmId(short filmFilmId) {
+    public void setFilmFilmId(Integer filmFilmId) {
         this.filmFilmId = filmFilmId;
     }
 
@@ -38,16 +38,17 @@ public class OrderedProductEntityPK implements Serializable {
 
         OrderedProductEntityPK that = (OrderedProductEntityPK) o;
 
-        if (customerOrderId != that.customerOrderId) return false;
-        if (filmFilmId != that.filmFilmId) return false;
+        if (customerOrderId != null ? !customerOrderId.equals(that.customerOrderId) : that.customerOrderId != null)
+            return false;
+        if (filmFilmId != null ? !filmFilmId.equals(that.filmFilmId) : that.filmFilmId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = customerOrderId;
-        result = 31 * result + (int) filmFilmId;
+        int result = customerOrderId != null ? customerOrderId.hashCode() : 0;
+        result = 31 * result + (filmFilmId != null ? filmFilmId.hashCode() : 0);
         return result;
     }
 }

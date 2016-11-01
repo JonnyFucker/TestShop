@@ -105,7 +105,8 @@ public class ShoppingCartTest {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.addItem(filmEntity);
         shoppingCart.update(filmEntity, (short) 2);
-        shoppingCart.calculateTotal(5);
+        shoppingCart.setSurcharge(5);
+
         Assert.assertEquals(25,shoppingCart.getTotal(),0.0001);
         Assert.assertNotEquals(10,shoppingCart.getTotal(),0.0001);
     }

@@ -4,7 +4,11 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <%@page pageEncoding="UTF-8"%>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%--
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+--%>
 <html>
     <head>
         <title>Confirmation</title>
@@ -55,16 +59,18 @@ and open the template in the editor.
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="orderedProduct" items="${orderedProducts}" varStatus="iter">
                                         <tr>
-                                            <td>movie</td>
-                                            <td>1</td>
-                                            <td>5 $</td>
+                                            <td>${products[iter.index].title}</td>
+                                            <td>${orderedProduct.quantity}</td>
+                                            <td>${products[iter.index].replacementCost * orderedProduct.quantity} $</td>
                                         </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                                 <div class="panel-footer ">
                                     <p class="toRight"><strong>delivery surcharge : 5$</strong></p>
-                                    <p class="toRight thick-line"><strong>total : 10$</strong></p>
+                                    <p class="toRight thick-line"><strong>total : ${orderRecord.amount} $</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -73,9 +79,12 @@ and open the template in the editor.
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">delivery address</div>
                                 <div class="jumbotron">
-                                    <p>Wiśniowa 9, 63-700 Krotoszyn</p>
-                                    <p>tomasz@gmail.com</p>
-                                    <p>112-222-222</p>
+                                    <p>${customer.firstName} ${customer.lastName}</p>
+
+                                    <p>${customer.addressByAddressId.postalCode} ${customer.addressByAddressId.cityByCityId.city}</p>
+                                    <p>${customer.addressByAddressId.address}</p>
+                                    <p>${customer.email}</p>
+                                    <p>${customer.addressByAddressId.phone}</p>
                                 </div>
                             </div>
                         </div>
@@ -84,12 +93,12 @@ and open the template in the editor.
             </div>
         </section>
 
-
         <script src="/resources/js/jquery-3.1.1.js"></script>
         <!-- Bootstrap Core JavaScript -->
         <script src="/resources/js/bootstrap.min.js"></script>
         <script src="/resources/js/paginathing.js"></script>
         <script src="/resources/script/commonScript.js" type="text/javascript"></script>
         <script src="/resources/script/navbar.js" type="text/javascript">
-        </script>    </body>
+        </script>
+    </body>
 </html>
